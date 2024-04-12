@@ -1,9 +1,10 @@
+// import "module-aliases/register";
 import express from "express";
 import dotenv from "dotenv";
 import path from "path";
 
 import { connectDB } from "./infra/config";
-import routes from "./routes/routes";
+import routes from "@routes/routes";
 
 dotenv.config();
 

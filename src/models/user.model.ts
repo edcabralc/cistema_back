@@ -1,25 +1,9 @@
-import { Schema, model, connection } from "mongoose";
-
-type UserType = {
-  id: string;
-  name: string;
-  email: string;
-  password: string;
-  recoverypasswordToken: string;
-  role: string;
-};
-
-const schema = new Schema<UserType>({
-  id: String,
-  name: String,
-  email: String,
-  password: String,
-  recoverypasswordToken: String,
-  role: String,
-});
+import { model, connection, Model } from "mongoose";
+import { UserType } from "@dto/user.type";
+import { UserSchema } from "@schemas/user.schema";
 
 const modelName: string = "User";
 
 export default connection && connection.models[modelName]
-  ? connection.models[modelName]
-  : model<UserType>(modelName, schema);
+  ? (connection.models[modelName] as Model<UserType>)
+  : model<UserType>(modelName, UserSchema);
