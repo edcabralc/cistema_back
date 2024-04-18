@@ -5,9 +5,10 @@ export const reserveRoutes = Router();
 
 reserveRoutes.get("/", ReserveController.getAll);
 reserveRoutes.get("/:id", ReserveController.getById);
+reserveRoutes.get("/reservas/:userId", ReserveController.getUserById);
 
-reserveRoutes.post("/", ReserveController.create);
+reserveRoutes.post("/reserva/:userId", ReserveController.create);
 
-reserveRoutes.put("/:id", ReserveController.update);
+reserveRoutes.put("/reserva/:userId", ReserveController.update);
 
-reserveRoutes.delete("/", ReserveController.remove);
+reserveRoutes.delete("/reserva/:userId", ReserveController.remove);

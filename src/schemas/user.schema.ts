@@ -13,5 +13,5 @@ export const UserSchema = new Schema<UserType>({
     default: Role.PROFESSOR,
   },
   recoverypasswordToken: String,
-  reserve: [{ reserveId: String }],
+  // reserve: [{ reserveId: { type: String, ref: Schema.ObjectId } }],
 });

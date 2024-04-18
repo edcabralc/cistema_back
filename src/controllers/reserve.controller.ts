@@ -28,8 +28,26 @@ export const getById = async (req: Request, res: Response) => {
   }
 };
 
+export const getUserById = async (req: Request, res: Response) => {
+  const { userId } = req.params;
+  console.log(userId);
+
+  try {
+    const reserve = await Reserve.find({ userId });
+    console.log(reserve);
+    if (!reserve) {
+      return res.status(404).json({ message: "Reserva não localizada" });
+    }
+    return res.json(reserve);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Reserva não localizada" });
+  }
+};
+
 export const create = async (req: Request, res: Response) => {
-  const { userId, date, students, classCode, book } = req.body;
+  const { userId } = req.params;
+  const { date, students, classCode, book } = req.body;
 
   try {
     const list = await Reserve.create({

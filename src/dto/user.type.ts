@@ -11,5 +11,5 @@ export type UserType = {
   password: string;
   recoverypasswordToken: string;
   role: Role;
-  reserve: [{ reserveId: string }];
+  // reserve: [{ reserveId: string }];
 };
