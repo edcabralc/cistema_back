@@ -28,7 +28,7 @@ export const getById = async (req: Request, res: Response) => {
   }
 };
 
-export const getUserById = async (req: Request, res: Response) => {
+export const getReserveByUserId = async (req: Request, res: Response) => {
   const { userId } = req.params;
   console.log(userId);
 
@@ -50,7 +50,7 @@ export const create = async (req: Request, res: Response) => {
   const { date, students, classCode, book } = req.body;
 
   try {
-    const list = await Reserve.create({
+    const reserve = await Reserve.create({
       userId,
       date,
       students,
@@ -58,7 +58,7 @@ export const create = async (req: Request, res: Response) => {
       book,
     });
 
-    return res.status(200).json(list);
+    return res.status(200).json(reserve);
   } catch (error) {
     return res.status(500).json({ error });
   }
