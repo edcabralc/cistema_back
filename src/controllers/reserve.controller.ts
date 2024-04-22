@@ -47,12 +47,13 @@ export const getReserveByUserId = async (req: Request, res: Response) => {
 
 export const create = async (req: Request, res: Response) => {
   const { userId } = req.params;
-  const { date, students, classCode, book } = req.body;
+  const { date, time, students, classCode, book } = req.body;
 
   try {
     const reserve = await Reserve.create({
       userId,
       date,
+      time,
       students,
       classCode,
       book,

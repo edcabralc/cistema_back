@@ -4,6 +4,7 @@ import { ReserveType, Status, Book } from "@dto/reserve.type";
 export const ReserveSchema = new Schema<ReserveType>({
   id: String,
   date: { type: String, required: true },
+  time: { type: String, required: true },
   status: {
     type: String,
     enum: Object.values(Status),
