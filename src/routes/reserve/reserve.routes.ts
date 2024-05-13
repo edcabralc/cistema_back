@@ -10,5 +10,6 @@ reserveRoutes.get("/reservas/:userId", ReserveController.getReserveByUserId);
 reserveRoutes.post("/reservar/:userId", ReserveController.create);
 
 reserveRoutes.put("/reserva/atualizar/:id", ReserveController.update);
+reserveRoutes.patch("/reserva/atualizar/:id", ReserveController.update);
 
 reserveRoutes.delete("/reservar/remover/:id", ReserveController.remove);
