@@ -1,11 +1,35 @@
 import { Request, Response } from "express";
 
 import Reserve from "@models/reserve.model";
+import User from "@models/user.model";
 
 export const getAll = async (req: Request, res: Response) => {
   try {
-    const list = await Reserve.find();
-    return res.status(200).json(list);
+    const reserves = await Reserve.find();
+
+    const reservesWithUsers = await Promise.all(
+      reserves.map(async (reserve) => {
+        const user = await User.findById(reserve.userId);
+
+        const list = {
+          id: reserve._id,
+          date: reserve.date,
+          time: reserve.time,
+          status: reserve.status,
+          students: reserve.students,
+          classCode: reserve.classCode,
+          book: reserve.book,
+          user: {
+            id: user?._id,
+            name: user?.name,
+          },
+        };
+
+        return list;
+      })
+    );
+
+    return res.status(200).json(reservesWithUsers);
   } catch (error) {
     return res.status(500).json({ message: "Erro ao localizar agendamentos" });
   }
